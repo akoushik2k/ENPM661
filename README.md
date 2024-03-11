@@ -13,6 +13,7 @@ This project demonstrates the Dijkstra algorithm for pathfinding in a 2D grid-ba
 ### 2. Running the Code:
 - Ensure that you have the required dependencies installed.
 - Execute the `main()` function in the provided Python script (`dijkstra_koushik_alapati.py`).
+- The .py file is located in project2 folder
 
 ### 3. Input:
 - Upon running the code, you will be prompted to enter the coordinates for the start and goal points.
@@ -31,4 +32,7 @@ This project demonstrates the Dijkstra algorithm for pathfinding in a 2D grid-ba
 - The program includes functions to generate the map with obstacles, move the agent in different directions, and check the feasibility of potential neighbor nodes.
 - The Dijkstra algorithm implementation uses a priority queue, and dictionary to efficiently explore the search space.
 - The visualization helps in understanding how the algorithm explores the grid and finds the optimal path from the start to the goal point.
+
+## Github
+- Link for Github "https://github.com/akoushik2k/ENPM661.git" 
 
