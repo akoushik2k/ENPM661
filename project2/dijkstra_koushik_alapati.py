@@ -118,6 +118,27 @@ def gen_Map():
     poly_Shape(arena, hexagon_pts_bor, white, "border")
 
     return arena
+def markers(strtNode, goalNode):
+    """
+    Function to mark the start and goal points on the map.
+
+    Parameters:
+        strtNode (tuple): Tuple containing the start point coordinates.
+        goalNode (tuple): Tuple containing the goal point coordinates.
+
+    Returns:
+        numpy.ndarray: The map image with start and goal points marked.
+    """
+    map_image[(strtNode[1]), strtNode[0]] = np.array([0, 0, 255])
+    map_image[(goalNode[1]), goalNode[0]] = np.array([0, 0, 255])
+    top_left = (int(strtNode[0] - 5 / 2), int(499-strtNode[1] - 5 / 2))
+    bottom_right = (int(strtNode[0] + 5 / 2), int(499-strtNode[1] + 5 / 2))
+    cv.rectangle(map_image, top_left, bottom_right, (0, 0, 255), thickness=2)
+    
+    top_left = (int(goalNode[0] - 5 / 2), int(499-goalNode[1] - 5 / 2))
+    bottom_right = (int(goalNode[0] + 5 / 2), int(499-goalNode[1] + 5 / 2))
+    cv.rectangle(map_image, top_left, bottom_right, (0, 0, 255), thickness=2)
+    return map_image
 
 def coordinates():
     """
@@ -340,7 +361,8 @@ def main():
     status = False
     while not status:
         strtNode, goalNode = coordinates()
-        status = check_coordinates(strtNode, goalNode)  
+        status = check_coordinates(strtNode, goalNode) 
+    
     
     start_t = tm.time()  # Record the start time of the algorithm
     
@@ -412,6 +434,7 @@ def main():
     # Visualize the optimal path
     for val in bckTrackLst:
         map_image[val[0], val[1], :] = np.array([255, 0, 0])
+        map_image = markers(strtNode, goalNode)  # Mark the start and goal points on the map 
         videoStr.append(map_image.copy())
         cv.imshow("Dijkstra Algorithm", map_image)
         cv.waitKey(1)
