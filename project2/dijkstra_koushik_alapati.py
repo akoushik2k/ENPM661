@@ -403,6 +403,8 @@ def main():
             else:
                 # Mark neighbor as visited and update its cost
                 visited_set.add(str(neighbour_Node))
+                
+                map_image = markers(strtNode, goalNode)  # Mark the start and goal points on the map 
                 map_image[(499 - neighbour_Node[1]), neighbour_Node[0], :] = np.array([0, 255, 0])
     
                 # Append frame to videoStr for visualization
@@ -434,7 +436,6 @@ def main():
     # Visualize the optimal path
     for val in bckTrackLst:
         map_image[val[0], val[1], :] = np.array([255, 0, 0])
-        map_image = markers(strtNode, goalNode)  # Mark the start and goal points on the map 
         videoStr.append(map_image.copy())
         cv.imshow("Dijkstra Algorithm", map_image)
         cv.waitKey(1)
